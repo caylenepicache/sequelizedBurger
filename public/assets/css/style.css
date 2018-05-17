@@ -1,0 +1,10 @@
+body {
+  background-image: url("../images/toa-heftiba-581904-unsplash.jpg") !important;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#eatheader, .text-danger {
+  font-family:'Titan One', cursive;
+}

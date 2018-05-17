@@ -1,0 +1,52 @@
+
+
+<div class="container">
+  <center>
+    <div class="col-lg">
+      <h1 class="text-warning display-1" id="eatheader" > Eat the Burger! </h1>
+      <br>
+      <h2 class="text-danger">Let's eat!</h2>
+      <div class="h5">
+      <!-- Dynamically Insert Burgers Here -->
+
+      {{#each burgers}} 
+        {{#unless devoured}}
+       <br>   {{> burgers/burger-block devour=true}}
+        {{/unless}}
+      {{/each}}
+
+      </div>
+    </div>
+
+    <!-- EATEN -->
+    <p></p>
+    <div class="col-lg">
+      <h2 class="text-danger">Already eaten!</h2>
+      <div id="already_eaten" class="h5">
+
+       <!-- Dynamically Insert Eaten Burgers Here -->
+
+      {{#each burgers}} 
+        {{#if devoured}}
+          <br>  {{> burgers/burger-block devour=false}}
+        {{/if}} 
+      {{/each}}
+
+      </div>
+    </div>
+  </center>
+</div>
+
+<div class="container">
+<h2 class="text-danger">Add a Burger!</h2>
+<form class="create-form">
+
+  <div class="form-group">
+    <label for="burgerInput">Burger Name:</label>
+    <input type="text" id="burgerInput" name="name">
+  </div>
+
+  <button type="submit" class="btn btn-warning">Add Burger</button>
+</form>
+
+</div>
