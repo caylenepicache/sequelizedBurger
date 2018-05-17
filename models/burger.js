@@ -1,29 +1,25 @@
 // Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
-
-//create the code that will call the ORM functions using burger specific input for the ORM.
+//var orm = require("../config/orm.js");
 
 
+// Sequelize (capital) references the standard library
+var Sequelize = require("sequelize");
+// sequelize (lowercase) references our connection to the DB.
+var sequelize = require("../config/connection.js");
 
-var burger = {
-  all: function(callback) {
-    orm.selectAll("burgers", function(res) {
-      callback(res);
-    });
-  },
+// Creates a "Character" model that matches up with DB
+var Burger = sequelize.define("burgers", {
+  // name string
+  burger_name: Sequelize.STRING,
+  // devoured boolean
+  devoured: Sequelize.BOOLEAN
+}, {
+  timestamps: false
+});
 
-  // The variables cols and vals are arrays.
-  create: function(newBurger, callback) {
-    orm.insertOne(newBurger, function(res) {
-      callback(res);
-    });
-  },
-  update: function(objColVals, condition, callback) {
-    orm.updateOne(objColVals, condition, function(res) {
-      callback(res);
-    });
-  }
-};
+// Syncs with DB
+Burger.sync();
 
-// Export the database functions for the controller (burger.js).
-module.exports = burger;
+// Makes the Burger Model available for other files (will also create a table)
+module.exports = Burger;
+
